@@ -48,12 +48,6 @@ class wp::cli (
 		}
 	}
 
-	if ! defined(Package["$phpprefix-cli"]) {
-		package { "$phpprefix-cli":
-			ensure => installed,
-		}
-	}
-
 	if ! defined(Package['curl']) {
 		package { 'curl':
 			ensure => installed,
