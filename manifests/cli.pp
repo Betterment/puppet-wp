@@ -10,7 +10,7 @@ class wp::cli (
 		'CentOS'		=> 'php',
 		/^(Debian|Ubuntu)$/	=> 'php5',
 		default			=> 'php',
-	} 
+	}
 
 	if 'installed' == $ensure or 'present' == $ensure {
 		# Create the install path
@@ -33,14 +33,14 @@ class wp::cli (
 		}
 
 		# Symlink it across
-		file { '/usr/bin/wp':
+		file { '/usr/local/bin/wp':
 			ensure => link,
 			target => "$install_path/bin/wp",
 			require => File[ "$install_path/bin/wp" ],
 		}
 	}
 	elsif 'absent' == $ensure {
-		file { "/usr/bin/wp":
+		file { "/usr/local/bin/wp":
 			ensure => absent,
 		}
 		file { "/usr/local/src/wp-cli":
