@@ -12,11 +12,11 @@ define wp::plugin (
 
 			exec { "wp install plugin $title":
 				cwd     => $location,
-				command => "/usr/bin/wp plugin install $slug",
-				unless  => "/usr/bin/wp plugin is-installed $slug",
+				command => "/usr/local/bin/wp plugin install $slug",
+				unless  => "/usr/local/bin/wp plugin is-installed $slug",
 				before  => Wp::Command["$location plugin $slug $ensure"],
 				require => Class["wp::cli"],
-				onlyif  => "/usr/bin/wp core is-installed"
+				onlyif  => "/usr/local/bin/wp core is-installed"
 			}
 		}
 		disabled: {
