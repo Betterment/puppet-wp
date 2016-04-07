@@ -14,8 +14,8 @@ class wp::cli (
 
 	if 'installed' == $ensure or 'present' == $ensure {
 		# Create the install path
-		file { [ "$install_path", "$install_path/bin" ]:
-			ensure => directory,
+		file { [ "$install_path/..", "$install_path", "$install_path/bin" ]:
+			ensure => directory
 		}
 
 		# Clone the Git repo
