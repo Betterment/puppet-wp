@@ -31,7 +31,7 @@ define wp::site (
     exec {"wp install $location":
         command => "/usr/local/bin/wp core $install --title='$sitename' --admin_email='$admin_email' --admin_name='$admin_user' --admin_password='$admin_password'",
         cwd => $location,
-        require => [ Class['wp::cli'] ],
+        require => [ Class['wp::cli'], Exec["download core $location"] ],
         unless => '/usr/local/bin/wp core is-installed'
     }
 
